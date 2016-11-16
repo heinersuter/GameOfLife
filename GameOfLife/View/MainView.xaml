@@ -1,0 +1,21 @@
+﻿<Window x:Class="GameOfLife.View.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:view="clr-namespace:GameOfLife.View"
+        mc:Ignorable="d" d:DataContext="{d:DesignInstance view:MainViewModel}"
+        Title="Game of Life" Height="350" Width="525">
+    <DockPanel>
+
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Start" Command="{Binding StartCommand}" MinWidth="96" Margin="8" />
+            <Button Content="Stop" Command="{Binding StopCommand}" MinWidth="96" Margin="8" />
+        </StackPanel>
+
+        <Viewbox Margin="8">
+            <view:GridView DataContext="{Binding Grid}" HorizontalAlignment="Center" />
+        </Viewbox>
+
+    </DockPanel>
+</Window>
