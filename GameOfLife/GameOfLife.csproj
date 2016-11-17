@@ -39,6 +39,10 @@
       <HintPath>..\packages\Alsolos.Commons.Wpf.1.1.0\lib\net451\Alsolos.Commons.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -65,9 +69,11 @@
       <DependentUpon>DialogWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Grid.cs" />
+    <Compile Include="Model\GridStore.cs" />
     <Compile Include="Service\GameEngine.cs" />
     <Compile Include="Service\CellUpdatedEventArgs.cs" />
     <Compile Include="Service\GameOfLifeService.cs" />
+    <Compile Include="Service\GridConverter.cs" />
     <Compile Include="Service\GridStoreService.cs" />
     <Compile Include="View\CellView.xaml.cs">
       <DependentUpon>CellView.xaml</DependentUpon>
@@ -82,10 +88,10 @@
     </Compile>
     <Compile Include="View\GridViewModel.cs" />
     <Compile Include="View\MainViewModel.cs" />
-    <Compile Include="View\GridStoreView.xaml.cs">
+    <Compile Include="View\GridStore\GridStoreView.xaml.cs">
       <DependentUpon>GridStoreView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\GridStoreViewModel.cs" />
+    <Compile Include="View\GridStore\GridStoreViewModel.cs" />
     <Page Include="Commons\DialogWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -114,7 +120,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\GridStoreView.xaml">
+    <Page Include="View\GridStore\GridStoreView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

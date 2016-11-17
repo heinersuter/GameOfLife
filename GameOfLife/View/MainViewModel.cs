@@ -1,6 +1,7 @@
 ﻿using Alsolos.Commons.Wpf.Mvvm;
 using GameOfLife.Commons;
 using GameOfLife.Service;
+using GameOfLife.View.GridStore;
 
 namespace GameOfLife.View
 {

@@ -1,9 +1,8 @@
 ﻿using Alsolos.Commons.Wpf.Mvvm;
 using GameOfLife.Commons;
 using GameOfLife.Service;
-using GameOfLife.View.GridStore;
 
-namespace GameOfLife.View
+namespace GameOfLife.View.GridStore
 {
     public class GridStoreViewModel : ViewModel
     {
@@ -39,8 +38,12 @@ namespace GameOfLife.View
 
         private void Save()
         {
-            _dialogService.ShowDialog(new SaveDialogViewModel());
-            _gridStoreService.Save(_gameService.Grid, "s");
+            var dialog = new SaveDialogViewModel();
+            _dialogService.ShowDialog(dialog);
+            if (dialog.IsConfirm)
+            {
+                _gridStoreService.Save(_gameService.Grid, dialog.Name);
+            }
         }
     }
 }

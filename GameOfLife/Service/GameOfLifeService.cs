@@ -65,7 +65,6 @@ namespace GameOfLife.Service
                     }
                 }
             }
-
         }
     }
 }

@@ -7,6 +7,21 @@
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance gridStore:SaveDialogViewModel}">
     
-    <Rectangle Fill="BlueViolet" Width="128" Height="32" />    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <HeaderedContentControl Grid.Row="0" Header="Name to save the game" MinWidth="128" Margin="8">
+            <TextBox Text="{Binding Name}"/>
+        </HeaderedContentControl>
+        
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="8 0 0 0">
+            <Button Content="Save" Command="{Binding SaveCommand}" IsDefault="True" MinWidth="96" Margin="0 8 8 8" />
+            <Button Content="Cancel" Command="{Binding CancelCommand}" IsCancel="True" MinWidth="96" Margin="0 8 8 8" />
+        </StackPanel>
+        
+    </Grid>
         
 </UserControl>
