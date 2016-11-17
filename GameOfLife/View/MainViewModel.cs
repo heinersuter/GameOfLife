@@ -1,17 +1,25 @@
 ﻿using Alsolos.Commons.Wpf.Mvvm;
+using GameOfLife.Commons;
 using GameOfLife.Service;
 
 namespace GameOfLife.View
 {
     public class MainViewModel : ViewModel
     {
-        private readonly GameOfLifeService _service;
+        private readonly GameOfLifeService _gameService;
 
-        public MainViewModel()
+        public MainViewModel(DialogService dialogService)
         {
-            _service = new GameOfLifeService(20, 20);
+            _gameService = new GameOfLifeService(20, 20);
 
-            Grid = new GridViewModel(_service);
+            GridStore = new GridStoreViewModel(_gameService, dialogService);
+            Grid = new GridViewModel(_gameService);
+        }
+
+        public GridStoreViewModel GridStore
+        {
+            get { return BackingFields.GetValue<GridStoreViewModel>(); }
+            set { BackingFields.SetValue(value); }
         }
 
         public GridViewModel Grid
@@ -20,28 +28,28 @@ namespace GameOfLife.View
             set { BackingFields.SetValue(value); }
         }
 
-        public DelegateCommand StartCommand => BackingFields.GetCommand(ExecuteStart, CanExecuteStart);
+        public DelegateCommand StartCommand => BackingFields.GetCommand(Start, CanStart);
 
-        public DelegateCommand StopCommand => BackingFields.GetCommand(ExecuteStop, CanExecuteStop);
+        public DelegateCommand StopCommand => BackingFields.GetCommand(Stop, CanStop);
 
-        private bool CanExecuteStart()
+        private bool CanStart()
         {
-            return !_service.IsRunning;
+            return !_gameService.IsRunning;
         }
 
-        private void ExecuteStart()
+        private void Start()
         {
-            _service.Start();
+            _gameService.Start();
         }
 
-        private bool CanExecuteStop()
+        private bool CanStop()
         {
-            return _service.IsRunning;
+            return _gameService.IsRunning;
         }
 
-        private void ExecuteStop()
+        private void Stop()
         {
-            _service.Stop();
+            _gameService.Stop();
         }
     }
 }

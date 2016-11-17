@@ -59,20 +59,42 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commons\DialogService.cs" />
+    <Compile Include="Commons\DialogViewModel.cs" />
+    <Compile Include="Commons\DialogWindow.xaml.cs">
+      <DependentUpon>DialogWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\Grid.cs" />
     <Compile Include="Service\GameEngine.cs" />
     <Compile Include="Service\CellUpdatedEventArgs.cs" />
     <Compile Include="Service\GameOfLifeService.cs" />
+    <Compile Include="Service\GridStoreService.cs" />
     <Compile Include="View\CellView.xaml.cs">
       <DependentUpon>CellView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CellViewModel.cs" />
+    <Compile Include="View\GridStore\SaveDialogView.xaml.cs">
+      <DependentUpon>SaveDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GridStore\SaveDialogViewModel.cs" />
     <Compile Include="View\GridView.xaml.cs">
       <DependentUpon>GridView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\GridViewModel.cs" />
     <Compile Include="View\MainViewModel.cs" />
+    <Compile Include="View\GridStoreView.xaml.cs">
+      <DependentUpon>GridStoreView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GridStoreViewModel.cs" />
+    <Page Include="Commons\DialogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\CellView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GridStore\SaveDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -80,7 +102,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\MainView.xaml">
+    <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -88,10 +110,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\MainView.xaml.cs">
-      <DependentUpon>MainView.xaml</DependentUpon>
+    <Compile Include="View\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\GridStoreView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

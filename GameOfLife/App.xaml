@@ -1,7 +1,14 @@
 ﻿<Application x:Class="GameOfLife.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:gridStore="clr-namespace:GameOfLife.View.GridStore">
     <Application.Resources>
-         
+
+        <DataTemplate DataType="{x:Type gridStore:SaveDialogViewModel}">
+            <gridStore:SaveDialogView />
+        </DataTemplate>
+
+        <Style TargetType="{x:Type Rectangle}" />
+        
     </Application.Resources>
 </Application>

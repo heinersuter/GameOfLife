@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using GameOfLife.Commons;
 using GameOfLife.View;
 
 namespace GameOfLife
@@ -9,9 +10,13 @@ namespace GameOfLife
         {
             base.OnStartup(e);
 
-            var mainViewModel = new MainViewModel();
-            var mainView = new MainView { DataContext = mainViewModel };
-            mainView.Show();
+            var mainWindow = new MainWindow();
+
+            var dialogService = new DialogService(mainWindow);
+            var mainViewModel = new MainViewModel(dialogService);
+
+            mainWindow.DataContext = mainViewModel;
+            mainWindow.Show();
         }
     }
 }

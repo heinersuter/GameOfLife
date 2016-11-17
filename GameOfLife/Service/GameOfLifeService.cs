@@ -9,25 +9,20 @@ namespace GameOfLife.Service
         // TODO: Add tick counter to display it
         // TODO: Stop if no changes in one tick. Add event to notify UI.
 
-        private readonly Grid _grid;
-
         public GameOfLifeService(int gridWith, int gridHeight)
         {
-            _grid = new Grid(gridWith, gridHeight);
+            Grid = new Grid(gridWith, gridHeight);
         }
 
-        public GameOfLifeService(Grid grid)
-        {
-            _grid = grid;
-        }
+        public Grid Grid { get; }
 
         public event EventHandler<CellUpdatedEventArgs> CellUpdated = delegate { };
 
         public bool IsRunning { get; private set; }
 
-        public int GridWidth => _grid.Width;
+        public int GridWidth => Grid.Width;
 
-        public int GridHeight => _grid.Height;
+        public int GridHeight => Grid.Height;
 
         public void Start()
         {
@@ -42,8 +37,8 @@ namespace GameOfLife.Service
 
         public void Toggle(int x, int y)
         {
-            _grid[x, y] = !_grid[x, y];
-            CellUpdated.Invoke(this, new CellUpdatedEventArgs { X = x, Y = y, NewIsAlive = _grid[x, y] });
+            Grid[x, y] = !Grid[x, y];
+            CellUpdated.Invoke(this, new CellUpdatedEventArgs { X = x, Y = y, NewIsAlive = Grid[x, y] });
         }
 
         private void Run()
@@ -57,15 +52,15 @@ namespace GameOfLife.Service
 
         private void UpdateCells()
         {
-            var newGrid = GameEngine.Process(_grid);
+            var newGrid = GameEngine.Process(Grid);
 
-            for (var x = 0; x < _grid.Width; x++)
+            for (var x = 0; x < Grid.Width; x++)
             {
-                for (var y = 0; y < _grid.Height; y++)
+                for (var y = 0; y < Grid.Height; y++)
                 {
-                    if (_grid[x, y] != newGrid[x, y])
+                    if (Grid[x, y] != newGrid[x, y])
                     {
-                        _grid[x, y] = newGrid[x, y];
+                        Grid[x, y] = newGrid[x, y];
                         CellUpdated.Invoke(this, new CellUpdatedEventArgs { X = x, Y = y, NewIsAlive = newGrid[x, y] });
                     }
                 }

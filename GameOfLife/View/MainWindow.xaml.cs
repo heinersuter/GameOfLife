@@ -1,8 +1,8 @@
 ﻿namespace GameOfLife.View
 {
-    public partial class MainView
+    public partial class MainWindow
     {
-        public MainView()
+        public MainWindow()
         {
             InitializeComponent();
         }
