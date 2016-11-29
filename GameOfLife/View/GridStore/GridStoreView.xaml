@@ -3,12 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:view="clr-namespace:GameOfLife.View"
-             mc:Ignorable="d" d:DataContext="{d:DesignInstance view:GridStoreViewModel}">
+             xmlns:gridStore="clr-namespace:GameOfLife.View.GridStore"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance gridStore:GridStoreViewModel}">
 
-    <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
-        <Button Content="Load" Command="{Binding LoadCommand}" MinWidth="96" Margin="8" />
-        <Button Content="Save" Command="{Binding SaveCommand}" MinWidth="96" Margin="8" />
+    <StackPanel DockPanel.Dock="Bottom" Margin="8 0 8 0">
+        <Button Content="Create" Command="{Binding CreateCommand}" MinWidth="96" Margin="0 8 0 0" />
+        <Button Content="Clear" Command="{Binding ClearCommand}" MinWidth="96" Margin="0 8 0 0" />
+        <Button Content="Load" Command="{Binding LoadCommand}" MinWidth="96" Margin="0 8 0 0" />
+        <Button Content="Save" Command="{Binding SaveCommand}" MinWidth="96" Margin="0 8 0 0" />
     </StackPanel>
     
 </UserControl>

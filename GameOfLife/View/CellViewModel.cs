@@ -1,9 +1,10 @@
-﻿using Alsolos.Commons.Wpf.Mvvm;
+﻿using System;
+using Alsolos.Commons.Wpf.Mvvm;
 using GameOfLife.Service;
 
 namespace GameOfLife.View
 {
-    public class CellViewModel : ViewModel
+    public class CellViewModel : ViewModel, IDisposable
     {
         private readonly int _x;
         private readonly int _y;
@@ -15,7 +16,9 @@ namespace GameOfLife.View
             _y = y;
             _service = service;
 
-            service.CellUpdated += OnCellUpdated;
+            _service.CellUpdated += OnCellUpdated;
+
+            IsAlive = _service.Grid[_x, _y];
         }
 
         public bool IsAlive
@@ -25,6 +28,11 @@ namespace GameOfLife.View
         }
 
         public DelegateCommand ToggleCommand => BackingFields.GetCommand(Toggle, CanToggle);
+
+        public void Dispose()
+        {
+            _service.CellUpdated -= OnCellUpdated;
+        }
 
         private bool CanToggle()
         {

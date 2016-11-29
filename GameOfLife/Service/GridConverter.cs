@@ -45,18 +45,18 @@ namespace GameOfLife.Service
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            reader.Read(); // PropertyName
+            reader.Read(); // PropertyName Width
             var width = reader.ReadAsInt32() ?? 0;
-            reader.Read(); // PropertyName
+            reader.Read(); // PropertyName Height
             var height = reader.ReadAsInt32() ?? 0;
-            reader.Read(); // PropertyName
+            reader.Read(); // PropertyName Alive
 
             var grid = new Grid(width, height);
 
             reader.Read(); // StartArray
             reader.Read(); // StartObject or EndArray
 
-            while (reader.TokenType != JsonToken.EndArray)
+            while (reader.TokenType == JsonToken.StartObject)
             {
                 reader.Read(); // PropertyName
                 var x = reader.ReadAsInt32() ?? 0;

@@ -5,19 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:view="clr-namespace:GameOfLife.View"
         xmlns:gridStore="clr-namespace:GameOfLife.View.GridStore"
+        xmlns:noAutoSize="http://alsolos.ch/Commons/Wpf"
+        xmlns:run="clr-namespace:GameOfLife.View.Run"
         mc:Ignorable="d" d:DataContext="{d:DesignInstance view:MainViewModel}"
-        Title="Game of Life" Height="350" Width="525">
+        Title="Game of Life" SizeToContent="WidthAndHeight">
     <DockPanel>
 
-        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Content="Start" Command="{Binding StartCommand}" MinWidth="96" Margin="8" />
-            <Button Content="Stop" Command="{Binding StopCommand}" MinWidth="96" Margin="8" />
-            <gridStore:GridStoreView DataContext="{Binding GridStore}" />
-        </StackPanel>
+        <run:RunView DockPanel.Dock="Bottom" DataContext="{Binding RunViewModel}"/>
+        
+        <gridStore:GridStoreView DockPanel.Dock="Right" DataContext="{Binding GridStoreViewModel}" />
 
-        <Viewbox Margin="8">
-            <view:GridView DataContext="{Binding Grid}" HorizontalAlignment="Center" />
-        </Viewbox>
+        <noAutoSize:NoAutoSizeDecorator MinWidth="256" MinHeight="256">
+            <Viewbox Margin="8">
+                <view:GridView DataContext="{Binding GridViewModel}" HorizontalAlignment="Center" />
+            </Viewbox>
+        </noAutoSize:NoAutoSizeDecorator>
 
     </DockPanel>
 </Window>

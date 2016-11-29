@@ -4,8 +4,16 @@
              xmlns:gridStore="clr-namespace:GameOfLife.View.GridStore">
     <Application.Resources>
 
+        <DataTemplate DataType="{x:Type gridStore:CreateDialogViewModel}">
+            <gridStore:CreateDialogView />
+        </DataTemplate>
+
         <DataTemplate DataType="{x:Type gridStore:SaveDialogViewModel}">
             <gridStore:SaveDialogView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type gridStore:LoadDialogViewModel}">
+            <gridStore:LoadDialogView />
         </DataTemplate>
 
         <Style TargetType="{x:Type Rectangle}" />

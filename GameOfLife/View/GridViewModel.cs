@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using Alsolos.Commons.Wpf.Mvvm;
 using GameOfLife.Service;
 
@@ -7,14 +6,28 @@ namespace GameOfLife.View
 {
     public class GridViewModel : ViewModel
     {
+        private readonly GameOfLifeService _service;
+
         public GridViewModel(GameOfLifeService service)
         {
-            Columns = service.GridWidth;
-            for (var x = 0; x < service.GridWidth; x++)
+            _service = service;
+            _service.GridUpdated += (e, args) => { OnGridUpdated(); };
+            OnGridUpdated();
+        }
+
+        private void OnGridUpdated()
+        {
+            foreach (var cellViewModel in Cells)
             {
-                for (var y = 0; y < service.GridHeight; y++)
+                cellViewModel.Dispose();
+            }
+
+            Columns = _service.GridWidth;
+            for (var x = 0; x < _service.GridWidth; x++)
+            {
+                for (var y = 0; y < _service.GridHeight; y++)
                 {
-                    Cells.Add(new CellViewModel(x, y, service));
+                    Cells.Add(new CellViewModel(x, y, _service));
                 }
             }
         }

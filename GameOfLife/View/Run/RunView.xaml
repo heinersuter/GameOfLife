@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="GameOfLife.View.Run.RunView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:run="clr-namespace:GameOfLife.View.Run"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance run:RunViewModel}">
+    
+    <StackPanel Orientation="Horizontal" Margin="0 8 0 8">
+        <Button Content="Start" Command="{Binding StartCommand}" MinWidth="96" Margin="8 0 8 0" />
+        <Button Content="Stop" Command="{Binding StopCommand}" MinWidth="96" Margin="0 0 8 0" />
+        <TextBlock Text="Ticks: " Margin="0 0 0 0" />
+        <TextBlock Text="{Binding Ticks}" Margin="0 0 8 0" />
+    </StackPanel>
+
+</UserControl>

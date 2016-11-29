@@ -11,26 +11,16 @@ namespace GameOfLife.View.GridStore
             set { BackingFields.SetValue(value); }
         }
 
-        public DelegateCommand SaveCommand => BackingFields.GetCommand(Save, CanSave);
+        public DelegateCommand SaveCommand => BackingFields.GetCommand(Save);
 
-        public DelegateCommand CancelCommand => BackingFields.GetCommand(Cancel, CanCancel);
+        public DelegateCommand CancelCommand => BackingFields.GetCommand(Cancel);
 
         public bool IsConfirm { get; private set; }
-
-        private bool CanSave()
-        {
-            return true;
-        }
 
         private void Save()
         {
             IsConfirm = true;
             Close();
-        }
-
-        private bool CanCancel()
-        {
-            return true;
         }
 
         private void Cancel()

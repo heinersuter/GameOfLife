@@ -2,6 +2,7 @@
 using GameOfLife.Commons;
 using GameOfLife.Service;
 using GameOfLife.View.GridStore;
+using GameOfLife.View.Run;
 
 namespace GameOfLife.View
 {
@@ -12,45 +13,35 @@ namespace GameOfLife.View
         public MainViewModel(DialogService dialogService)
         {
             _gameService = new GameOfLifeService(20, 20);
+            _gameService.GridUpdated += (e, args) => { UpdateGrid(); };
 
-            GridStore = new GridStoreViewModel(_gameService, dialogService);
-            Grid = new GridViewModel(_gameService);
+            RunViewModel = new RunViewModel(_gameService);
+
+            GridStoreViewModel = new GridStoreViewModel(_gameService, dialogService);
+            UpdateGrid();
         }
 
-        public GridStoreViewModel GridStore
+        public GridStoreViewModel GridStoreViewModel
         {
             get { return BackingFields.GetValue<GridStoreViewModel>(); }
-            set { BackingFields.SetValue(value); }
+            private set { BackingFields.SetValue(value); }
         }
 
-        public GridViewModel Grid
+        public RunViewModel RunViewModel
+        {
+            get { return BackingFields.GetValue<RunViewModel>(); }
+            private set { BackingFields.SetValue(value); }
+        }
+
+        public GridViewModel GridViewModel
         {
             get { return BackingFields.GetValue<GridViewModel>(); }
-            set { BackingFields.SetValue(value); }
+            private set { BackingFields.SetValue(value); }
         }
 
-        public DelegateCommand StartCommand => BackingFields.GetCommand(Start, CanStart);
-
-        public DelegateCommand StopCommand => BackingFields.GetCommand(Stop, CanStop);
-
-        private bool CanStart()
+        private void UpdateGrid()
         {
-            return !_gameService.IsRunning;
-        }
-
-        private void Start()
-        {
-            _gameService.Start();
-        }
-
-        private bool CanStop()
-        {
-            return _gameService.IsRunning;
-        }
-
-        private void Stop()
-        {
-            _gameService.Stop();
+            GridViewModel = new GridViewModel(_gameService);
         }
     }
 }
